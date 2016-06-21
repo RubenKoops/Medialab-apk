@@ -168,7 +168,7 @@ function login(){
 		 if(ready == true){
 			 $.ajax({
 				type: "POST",
-				url:"http://rubenkoops.nl/medialab/php/includes.php",
+				url:"http://pakhuis.hosts.ma-cloud.nl/medialab/php/includes.php",
 				data: dataString,
 				xhrFields: {
 				   withCredentials: true
@@ -201,7 +201,7 @@ function login(){
 function getDataFromDb(key,getdata){
 	
 	$.ajax({
-		url:"http://rubenkoops.nl/medialab/php/json.php?host=test",
+		url:"http://pakhuis.hosts.ma-cloud.nl/medialab/php/json.php",
 		xhrFields: { withCredentials: true },
 		crossDomain: true,
 		cache: false,
@@ -215,9 +215,11 @@ function getDataFromDb(key,getdata){
 			if(key){reloaddata = false;}
 			if(getdata){reloaddata = true;}
 			var id=field.id;
- 			var name="<h1>"+field.name+" ("+id+")</h1>";
- 			var type=field.type;
- 			var state=field.state;
+			var bekijkbutton = "<input id='"+id+"' type='button' class='show_product button' value='bekijk'>";
+			var editbutton = "<input id='"+id+"' type='button' class='edit_popup_menu' value='edit'>";
+ 			var name="<h1>"+field.name+" ("+id+")";
+ 			var type="<span>"+field.type;
+ 			var state=field.state+"</span>"+editbutton+"</h1>";
 			
 			if(key){
 				if(id == key){
@@ -237,9 +239,8 @@ function getDataFromDb(key,getdata){
 				}
 				if(reloaddata == true){
 					//alert('ik reload nu');
-					var bekijkbutton = "<input id='"+id+"' type='button' class='show_product' value='bekijk'>&nbsp;&nbsp;&nbsp;";
-					var editbutton = "<input id='"+id+"' type='button' class='edit_popup_menu' value='edit'>";
-					$("#itemlist").append("<li>"+name+type+state+"<hr>"+bekijkbutton+editbutton+"</li>");
+					
+					$("#itemlist").append("<li>"+name+type+state+bekijkbutton+"</li>");
 					}
 				
  			});
@@ -269,7 +270,7 @@ var ready=false;
  if(ready == true){
 	 $.ajax({
 		type: "POST",
-		url:"http://rubenkoops.nl/medialab/php/insert.php",
+		url:"http://pakhuis.hosts.ma-cloud.nl/medialab/php/insert.php",
 		data: dataString,
 		xhrFields: {
 			   withCredentials: true
@@ -314,7 +315,7 @@ function deleteDataFromDb(){
 		 var dataString="id="+id+"&action=delete";
 		 $.ajax({
 			type: "POST",
-			url:"http://rubenkoops.nl/medialab/php/insert.php",
+			url:"http://pakhuis.hosts.ma-cloud.nl/medialab/php/insert.php",
 			data: dataString,
 			xhrFields: {
 				   withCredentials: true

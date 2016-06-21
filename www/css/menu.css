@@ -29,7 +29,7 @@
 	text-align:center;
 	}
 	
-#menu_checkbox:checked + #menu_button{
+#menu_checkbox:checked ~ #menu_button{
 	transform: translateX(300px) rotate(90deg);
 	transition: transform 0.5s ease-in-out;
 	}

@@ -7,6 +7,26 @@ h3 {
 	margin-top: 50px;
 }
 
+.button {
+	background: #9DC45F;
+	border: none;
+	padding: 5px 15px 5px 15px;
+	color: #585858;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	text-shadow: 1px 1px 1px #FFE477;
+	font-weight: bold;
+	box-shadow: 1px 1px 1px #3D3D3D;
+	-webkit-box-shadow:1px 1px 1px #3D3D3D;
+	-moz-box-shadow:1px 1px 1px #3D3D3D;
+}
+
+.button:hover {
+    color: #333;
+    background-color: #EBEBEB;
+}
+
 /* Basic Grey */
 .form-style-basic-grey {
 	margin-left:auto;

@@ -13,7 +13,7 @@
  if($action == "insert"){
 	 $unique = true;
  
-	$q=mysql_query("SELECT id FROM `Medialab_inventory`");
+	$q=mysql_query("SELECT id FROM `inventory`");
 	while ($row=mysql_fetch_object($q)){
 		$id_db = $row->id;
 		if($id_db == $id){
@@ -22,7 +22,7 @@
 			}
 		}
 	 if($unique == true){
-		  $q=mysql_query("INSERT INTO Medialab_inventory (id,type,name,date,editdate,owner) VALUES ('$id','$type','$name','$date','$date','$owner')");
+		  $q=mysql_query("INSERT INTO inventory (id,type,name,date,editdate,owner) VALUES ('$id','$type','$name','$date','$date','$owner')");
 		 if($q)
 		  echo "ok";
 		 else
@@ -32,8 +32,8 @@
 			  $note_id = uniqid();
 			  $note=$_POST['note'];
 			  
-			  $q=mysql_query("INSERT INTO Medialab_notes (id,date,note,owner) VALUES ('$note_id','$date','$note','$owner')");
-			  $q=mysql_query("UPDATE Medialab_inventory SET notes = CONCAT( notes, '$note_id|') WHERE id='$id'");
+			  $q=mysql_query("INSERT INTO notes (id,date,note,owner) VALUES ('$note_id','$date','$note','$owner')");
+			  $q=mysql_query("UPDATE inventory SET notes = CONCAT( notes, '$note_id|') WHERE id='$id'");
 			  
 			  }
 		  
@@ -41,7 +41,7 @@
  	}
 	
 	if($action == "update"){
-		$q=mysql_query("UPDATE Medialab_inventory SET type='$type', name='$name', editdate='$editdate', owner='$owner' WHERE id='$id'");
+		$q=mysql_query("UPDATE inventory SET type='$type', name='$name', editdate='$editdate', owner='$owner' WHERE id='$id'");
 		 if($q)
 		  echo "ok";
 		 else
@@ -49,7 +49,7 @@
  	}
 	
 	if($action == "delete"){
-		$q=mysql_query("DELETE FROM Medialab_inventory WHERE id='$id'");
+		$q=mysql_query("DELETE FROM inventory WHERE id='$id'");
 		 if($q)
 		  echo "ok";
 		 else

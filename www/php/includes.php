@@ -10,7 +10,7 @@ $password = $_POST['password'];
 
 if($_POST['username']){
 	// Create connection
-	$conn = new mysqli("rubenkoops.nl.mysql", $username, $password);
+	$conn = new mysqli("localhost", $username, $password);
 	
 	// Check connection
 	if ($conn->connect_error) {
@@ -22,8 +22,9 @@ if($_POST['username']){
 	$_SESSION['password'] = $password;
 	}
 
-mysql_connect("rubenkoops.nl.mysql",$_SESSION['username'],$_SESSION['password']);
-mysql_select_db("rubenkoops_nl");
+
+mysql_connect("localhost",$_SESSION['username'],$_SESSION['password']);
+mysql_select_db("medialab");
 date_default_timezone_set('Europe/Amsterdam');
 
 ?>

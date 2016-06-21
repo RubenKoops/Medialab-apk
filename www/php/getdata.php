@@ -3,7 +3,7 @@
 include "includes.php";
 	
 $data=array();
-$q=mysql_query("SELECT * FROM `inventory` ORDER BY date DESC");
+$q=mysql_query("SELECT * FROM `Medialab_inventory` ORDER BY date DESC");
 while ($row=mysql_fetch_object($q)){
 	$data[]=$row;
 	

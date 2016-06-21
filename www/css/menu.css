@@ -8,9 +8,11 @@
 	top:0; left:0;
 	position:fixed;
 	transform: translateX(0);
-	font-size:30px;
 	height:50px; width:50px;
-	text-align:center; line-height:50px;
+	background-image:url(../img/menu.png);
+	background-size:70% 70%;
+	background-position: center center;
+	background-repeat:no-repeat;
 	transition: transform 0.5s ease-in-out;
 	z-index:10;
 	}

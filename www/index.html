@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Medialab</title>
+<link href="css/style.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/functions.js"></script>
+<!--
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<input type="checkbox" id="menu_checkbox">
+<input id="product_checkbox" type="checkbox">
+<input type="checkbox" id="popup_checkbox">
+
+<label id="menu_button" for="menu_checkbox">&#9776;</label>
+<div id="menu">
+<h1>Medialab</h1>
+    <ul>
+        <a href="javascript:void(0)" class="home"><li>home</li></a>
+        <a href="javascript:void(0)" class="toggle_popup_menu"><li>add item</li></a>
+        <a href="javascript:void(0)" class="logout"><li>logout</li></a>
+    </ul>
+</div>
+
+
+
+<wrapper>
+	<header><h1>Medialab</h1></header>
+	<content>
+        <ul id="itemlist" ></ul>
+        <div class="clear"></div>
+	</content>
+    <!-- /////////////////////////////////////////////////PRODUCT\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+    <div id="product">
+   		<button class="home" type="button" >terug</button>
+        <div id="product_info">
+        </div>
+    </div>
+</wrapper>   
+<!-- /////////////////////////////////////////////////EDIT POPUP\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+<form id="edit_product" class="form-style-dark-matter">
+    <button class="button toggle_popup_menu sluiten" type="button" >X</button>
+    <h1>Nieuw product
+        <span>Vul alle onderstaande velden in</span>
+    </h1>
+    <input id="action" type="hidden" value="insert">
+    <label>
+    	<span>Id :</span>
+        <input id="id" type="text" name="id" placeholder="Id nummer" style="text-transform: uppercase;" onblur="this.value=removeSpaces(this.value);" required>
+    </label>
+    <label>
+        <span>Type :</span>
+        <input id="type" type="text" name="type" placeholder="type product" required list="type_list">
+        <datalist id="type_list">
+        	<option value="smartphone"></option>
+            <option value="tablet"></option>
+            <option value="camera"></option>
+            <option value="audio"></option>
+            <option value="monitor"></option>
+            <option value="computer"></option>
+            <option value="laptop"></option>
+        </datalist>
+    </label>
+    <label>
+        <span>Product :</span>
+        <input id="name" type="text" name="name" placeholder="Naam van het product" required>
+    </label>
+    <label>
+        <span>Jouw naam :</span>
+        <input id="owner" type="text" name="owner" placeholder="Naam van invoerder" required>
+    </label>
+    <label class="edit">
+        <span>Notitie :</span>
+        <textarea id="note" name="note" required></textarea>
+    </label>
+    
+        <div id="info" class="edit"></div>
+        <input type="submit" id="insert" class="button" value="opslaan">&nbsp;&nbsp;&nbsp;<input  id="delete" type="button" class="button" value="delete" onClick="confirmDelete()">
+        <div id="confirm_delete">
+        	Weet je zeker dat je dit product wilt verwijderen?
+            <input type="button" class="button" value="ja">
+            <input type="button" class="button" value="nee" onClick="confirmDelete()">
+        </div>
+        <div class="clear"></div>
+    
+</form>
+</body>
+</html>

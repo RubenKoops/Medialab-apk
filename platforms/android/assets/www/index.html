@@ -6,6 +6,8 @@
 <link href="css/style.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/functions.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -14,7 +16,7 @@
 <input id="product_checkbox" type="checkbox">
 <input type="checkbox" id="popup_checkbox">
 
-<label id="menu_button" for="menu_checkbox">&#9776;</label>
+<label id="menu_button" for="menu_checkbox"></label>
 <div id="menu">
 <h1>Medialab</h1>
     <ul>
@@ -77,7 +79,7 @@
         <textarea id="note" name="note" required></textarea>
     </label>
     
-        <div class="edit"></div>
+        <div id="info" class="edit"></div>
         <input type="submit" id="insert" class="button" value="opslaan">&nbsp;&nbsp;&nbsp;<input  id="delete" type="button" class="button" value="delete" onClick="confirmDelete()">
         <div id="confirm_delete">
         	Weet je zeker dat je dit product wilt verwijderen?
@@ -87,7 +89,5 @@
         <div class="clear"></div>
     
 </form>
-<script type="text/javascript" src="cordova.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>

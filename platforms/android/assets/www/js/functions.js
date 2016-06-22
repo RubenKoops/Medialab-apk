@@ -66,6 +66,7 @@ function addTogleListeners(){
 			  function() 
 			  {
 				$('.edit').css("display","block");
+				$('#info').css("display","none");
 				$('#delete').css("display","none");
 				$('#confirm_delete').css("display","none");
 				$('#id').prop('readonly',false);
@@ -76,6 +77,7 @@ function addTogleListeners(){
 		
 	$("#itemlist").on("click",".edit_popup_menu",function(){
 		$('.edit').css("display","none");
+		$('#info').css("display","block");
 		$('#delete').css("display","inline");
 		$('#id').prop('readonly',true);
 		var checkBox = $("#popup_checkbox");

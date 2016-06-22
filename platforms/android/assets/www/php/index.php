@@ -96,12 +96,12 @@ h5{
     <ul>
     <?php
     date_default_timezone_set('Europe/Amsterdam');
-    foreach (glob("build/*.apk") as $apk){
+    foreach (glob("../build/*.apk") as $apk){
 		$teller++;
 		if (DateTime::createFromFormat('Y-m-d_His', str_replace("build/","",str_replace(".apk","",$apk))) == FALSE) {
-			  rename($apk,"build/".date("Y-m-d_His").".apk");
+			  rename($apk,"../build/".date("Y-m-d_His").".apk");
 			  
-			  $apk = "build/".date("Y-m-d_His").".apk";
+			  $apk = "../build/".date("Y-m-d_His").".apk";
 			}
 		$apk_array[] = $apk;
         }
@@ -110,7 +110,7 @@ h5{
 	
 	rsort($apk_array);	
 	foreach($apk_array as $apk){
-		$date = str_replace("build/","",str_replace(".apk","",$apk));
+		$date = str_replace("../build/","",str_replace(".apk","",$apk));
 		$pieces = explode("_",$date);
 		$date = $pieces[0];
 		$date = date("Ymd", strtotime($date));
@@ -120,7 +120,7 @@ h5{
 		//laat alle items van vandaag zien
 		if($date == $cur_date){
 			?>
-            <li><?php echo str_replace("build/","",$apk);?></li><a class="today" href="<?php echo $apk;?>" download>download</a>
+            <li><?php echo str_replace("../build/","",$apk);?></li><a class="today" href="<?php echo $apk;?>" download>download</a>
             <?php
 			}
 			
@@ -130,11 +130,11 @@ h5{
             <div class="clear"></div>
             </ul>
             <ul class="oud"><h5><?php echo date("l d F Y", strtotime($date));?></h5>
-			<li><?php echo str_replace("build/","",$apk);?></li><a href="<?php echo $apk;?>" download>download</a>
+			<li><?php echo str_replace("../build/","",$apk);?></li><a href="<?php echo $apk;?>" download>download</a>
             <?php
 			}else{
 				?>
-				<li><?php echo str_replace("build/","",$apk);?></li><a href="<?php echo $apk;?>" download>download</a>
+				<li><?php echo str_replace("../build/","",$apk);?></li><a href="<?php echo $apk;?>" download>download</a>
                 <?php
 				}
 		

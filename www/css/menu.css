@@ -14,6 +14,10 @@
 	background-position: center center;
 	background-repeat:no-repeat;
 	transition: transform 0.5s ease-in-out;
+	background-image:url(../img/menu.png);
+	background-size: 60%;
+	background-position:center center;
+	background-repeat:no-repeat;
 	z-index:10;
 	}
 #menu{

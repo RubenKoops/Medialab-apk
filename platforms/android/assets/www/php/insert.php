@@ -22,7 +22,7 @@
 			}
 		}
 	 if($unique == true){
-		  $q=mysql_query("INSERT INTO Medialab_inventory (id,type,name,date,owner) VALUES ('$id','$type','$name','$date','$owner')");
+		  $q=mysql_query("INSERT INTO Medialab_inventory (id,type,name,date,editdate,owner) VALUES ('$id','$type','$name','$date','$date','$owner')");
 		 if($q)
 		  echo "ok";
 		 else

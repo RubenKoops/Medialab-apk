@@ -23,7 +23,7 @@ body {
 }
 
 wrapper {
-	max-width:1000px;
+	max-width:1200px;
 	margin:auto;
 	padding-top:70px;
 	transition: opacity 0.5s ease-in-out;
@@ -45,11 +45,12 @@ header h1 {
 content {
 	background-color: rgba(0,0,0,0.15);
 	padding:20px; margin:10px;
+	transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 	}
 	
 @media screen and (max-width: 800px) {
 	wrapper {
-		padding-top:43px;
+		padding-top:40px;
 		}
 	content {
 		margin-left:0; margin-right:0;

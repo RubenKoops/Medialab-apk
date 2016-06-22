@@ -23,6 +23,7 @@
         <a href="javascript:void(0)" class="home"><li>home</li></a>
         <a href="javascript:void(0)" class="toggle_popup_menu"><li>add item</li></a>
         <a href="javascript:void(0)" class="logout"><li>logout</li></a>
+        <a href="http://pakhuis.hosts.ma-cloud.nl/medialab/php/" target="_blank" onclick="navigator.app.loadUrl('http://pakhuis.hosts.ma-cloud.nl/medialab/php/', { openExternal:true });"><li>check update</li></a>
     </ul>
 </div>
 
@@ -36,14 +37,15 @@
 	</content>
     <!-- /////////////////////////////////////////////////PRODUCT\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
     <div id="product">
-   		<button class="home" type="button" >terug</button>
+   		<button class="home button" type="button" >terug</button>
         <div id="product_info">
         </div>
     </div>
 </wrapper>   
 <!-- /////////////////////////////////////////////////EDIT POPUP\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
 
-<form id="edit_product" class="form-style-dark-matter">
+<div id="edit_product">
+<form class="form-style-dark-matter">
     <button class="button toggle_popup_menu sluiten" type="button" >X</button>
     <h1>Nieuw product
         <span>Vul alle onderstaande velden in</span>
@@ -89,5 +91,6 @@
         <div class="clear"></div>
     
 </form>
+</div>
 </body>
 </html>

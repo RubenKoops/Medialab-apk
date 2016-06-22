@@ -91,6 +91,7 @@ h5{
 	
 </style>
 <wrapper>
+	<h1>Medialab apk download</h1>
     <a href="index.php" class="refresh">refresh</a>
     <div id="apk_list">
     <ul>
@@ -98,7 +99,7 @@ h5{
     date_default_timezone_set('Europe/Amsterdam');
     foreach (glob("../build/*.apk") as $apk){
 		$teller++;
-		if (DateTime::createFromFormat('Y-m-d_His', str_replace("build/","",str_replace(".apk","",$apk))) == FALSE) {
+		if (DateTime::createFromFormat('Y-m-d_His', str_replace("../build/","",str_replace(".apk","",$apk))) == FALSE) {
 			  rename($apk,"../build/".date("Y-m-d_His").".apk");
 			  
 			  $apk = "../build/".date("Y-m-d_His").".apk";

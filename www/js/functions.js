@@ -171,11 +171,11 @@ function login(){
 			}else{
 				$("body").append("<msg>vul alle velden in</msg>");
 				}
-		 var dataString="username="+username+"&password="+password;
+		 var dataString="username="+username+"&password="+password+"&login=medialab";
 		 if(ready == true){
 			 $.ajax({
 				type: "POST",
-				url:"http://pakhuis.hosts.ma-cloud.nl/medialab/php/includes.php",
+				url:"http://pakhuis.hosts.ma-cloud.nl/login.php",
 				data: dataString,
 				xhrFields: {
 				   withCredentials: true
@@ -184,7 +184,7 @@ function login(){
 				cache: false,
 				beforeSend: function(){ $("#login").val('Connecting...');},
 				success: function(data){
-					//alert(data);
+					data= (data.trim());
 					if(data=="ok"){
 						//alert("inserted");
 						$("body").append("<msg>login gelukt</msg>");
@@ -194,6 +194,7 @@ function login(){
 						}
 						else{
 							//alert(data);
+							window.location.replace("login.html");
 							$("body").append("<msg>"+data+"</msg>");
 							$("#login").val('login');
 							}
@@ -291,6 +292,7 @@ var ready=false;
 		cache: false,
 		beforeSend: function(){ $("#insert").val('Connecting...');},
 		success: function(data){
+			
 			if(data=="ok"){
 				//alert("inserted");
 				$("#itemlist").empty();

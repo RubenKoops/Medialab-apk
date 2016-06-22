@@ -100,7 +100,13 @@ function addTogleListeners(){
 		
 	$(".home").click(function(){
 			$("#menu_checkbox").prop("checked",false);
+			if($("#product_checkbox").prop("checked") == false){
+				//alert("ik refresh de data omdat je op home klikt");
+				$("#itemlist").empty()
+				getDataFromDb();
+				}
 			$("#product_checkbox").prop("checked",false);
+			
 		});
 };
 
@@ -110,12 +116,13 @@ function showProduct(){
 	var name="<h1>"+window.editname+" ("+window.showid+")</h1>";
  	var type=window.edittype;
  	var state=window.editstate;
+	var owner=window.editowner;
 	var createdate=window.createdate;
 	var editdate=window.editdate;
 	var notes=window.notes;
 	
-	var info="<i>aangemaakt: "+createdate+"<br>opgeslagen: "+editdate+"</i>";
-	$("#product_info").append(name+info);
+	var info="<i>aangemaakt: "+createdate+"<br>opgeslagen: "+editdate+"<br>eigenaar: "+owner+"</i>";
+	$("#product_info").append(name+info+"<hr>"+state+notes);
 	
 	}
 function fillIn(){
@@ -164,11 +171,11 @@ function login(){
 			}else{
 				$("body").append("<msg>vul alle velden in</msg>");
 				}
-		 var dataString="username="+username+"&password="+password;
+		 var dataString="username="+username+"&password="+password+"&login=medialab";
 		 if(ready == true){
 			 $.ajax({
 				type: "POST",
-				url:"http://rubenkoops.nl/medialab/php/includes.php",
+				url:"http://pakhuis.hosts.ma-cloud.nl/login.php",
 				data: dataString,
 				xhrFields: {
 				   withCredentials: true
@@ -177,7 +184,7 @@ function login(){
 				cache: false,
 				beforeSend: function(){ $("#login").val('Connecting...');},
 				success: function(data){
-					//alert(data);
+					data= (data.trim());
 					if(data=="ok"){
 						//alert("inserted");
 						$("body").append("<msg>login gelukt</msg>");
@@ -187,6 +194,7 @@ function login(){
 						}
 						else{
 							//alert(data);
+							window.location.replace("login.html");
 							$("body").append("<msg>"+data+"</msg>");
 							$("#login").val('login');
 							}
@@ -201,33 +209,40 @@ function login(){
 function getDataFromDb(key,getdata){
 	
 	$.ajax({
-		url:"http://rubenkoops.nl/medialab/php/json.php?host=test",
+		url:"http://pakhuis.hosts.ma-cloud.nl/medialab/php/json.php",
 		xhrFields: { withCredentials: true },
 		crossDomain: true,
 		cache: false,
 		success: function(data){
 			//alert(data);
-			
+		if(data == ""){
+			alert("erisgeendata");
+			checkLogin('logout');
+			}	
 		var result = JSON.parse(data);
+		
 		
 		$.each(result, function(i, field){
 			var reloaddata = true;
 			if(key){reloaddata = false;}
 			if(getdata){reloaddata = true;}
 			var id=field.id;
- 			var name="<h1>"+field.name+" ("+id+")</h1>";
- 			var type=field.type;
- 			var state=field.state;
+			var bekijkbutton = "<input id='"+id+"' type='button' class='show_product button' value='bekijk'>";
+			var editbutton = "<input id='"+id+"' type='button' class='edit_popup_menu' value='edit'>";
+ 			var name="<h1>"+field.name+" ("+id+")";
+ 			var type="<span>"+field.type;
+ 			var state=field.state+"</span>"+editbutton+"</h1>";
 			
 			if(key){
 				if(id == key){
 					window.editid=field.id;
 					window.edittype=field.type;
 					window.editname=field.name;
+					window.editstate=field.state;
 					window.editowner=field.owner;
 					window.createdate=field.date;
 					window.editdate=field.editdate;
-					window.notes=field.notes;
+					window.editnotes=field.notes;
 					
 					//alert(edittype+", "+editname+", "+editowner);
 					
@@ -237,9 +252,8 @@ function getDataFromDb(key,getdata){
 				}
 				if(reloaddata == true){
 					//alert('ik reload nu');
-					var bekijkbutton = "<input id='"+id+"' type='button' class='show_product' value='bekijk'>&nbsp;&nbsp;&nbsp;";
-					var editbutton = "<input id='"+id+"' type='button' class='edit_popup_menu' value='edit'>";
-					$("#itemlist").append("<li>"+name+type+state+"<hr>"+bekijkbutton+editbutton+"</li>");
+					
+					$("#itemlist").append("<li>"+name+type+state+bekijkbutton+"</li>");
 					}
 				
  			});
@@ -269,7 +283,7 @@ var ready=false;
  if(ready == true){
 	 $.ajax({
 		type: "POST",
-		url:"http://rubenkoops.nl/medialab/php/insert.php",
+		url:"http://pakhuis.hosts.ma-cloud.nl/medialab/php/insert.php",
 		data: dataString,
 		xhrFields: {
 			   withCredentials: true
@@ -278,6 +292,7 @@ var ready=false;
 		cache: false,
 		beforeSend: function(){ $("#insert").val('Connecting...');},
 		success: function(data){
+			
 			if(data=="ok"){
 				//alert("inserted");
 				$("#itemlist").empty();
@@ -314,7 +329,7 @@ function deleteDataFromDb(){
 		 var dataString="id="+id+"&action=delete";
 		 $.ajax({
 			type: "POST",
-			url:"http://rubenkoops.nl/medialab/php/insert.php",
+			url:"http://pakhuis.hosts.ma-cloud.nl/medialab/php/insert.php",
 			data: dataString,
 			xhrFields: {
 				   withCredentials: true

@@ -1,30 +1,31 @@
 <?php
-header("Access-Control-Allow-Origin: http://rubenkoops.nl, http://localhost:8000");
+header("Access-Control-Allow-Origin: http://pakhuis.hosts.ma-cloud.nl, http://localhost:8000");
 header("Access-Control-Allow-Credentials: true");
 session_start();
-$username = $_POST['username'];
-$password = $_POST['password'];
 
-
-
-
-if($_POST['username']){
-	// Create connection
-	$conn = new mysqli("localhost", $username, $password);
+if(($_SESSION['username'])&&($_SESSION['role']=="docent" || $_SESSION['role']=="admin")){
+	if($_SESSION['klas']!="geen"){
+		$klas_map = $_SESSION['klas']."/";
+		
+		}
 	
-	// Check connection
-	if ($conn->connect_error) {
-		die("Connection failed: " . $conn->connect_error);
-	} 
+	include("../users/".$klas_map.$_SESSION['username']."/userdata.php");
 	
-	echo "ok";
-	$_SESSION['username'] = $username;
-	$_SESSION['password'] = $password;
+	if (($_SESSION['username'] == $username) && ($_SESSION['password'] == $password)){
+		$login = true;
+		if($_POST['login_status'] && $login = true){
+			echo "login";
+			}else{ 
+			echo "logout";
+			exit();
+			}
+		}
 	}
-
-
-mysql_connect("localhost",$_SESSION['username'],$_SESSION['password']);
+			
+mysql_connect("localhost","medialab","xsx6u7g82");
 mysql_select_db("medialab");
 date_default_timezone_set('Europe/Amsterdam');
+
+
 
 ?>

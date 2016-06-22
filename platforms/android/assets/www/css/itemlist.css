@@ -12,22 +12,63 @@
 	margin:0.83%; padding:0.83%;
 	white-space: nowrap;
 	overflow: hidden;
-	text-overflow: ellipsis;
+	border-radius:5px;
+	position:relative;
 	}
-	
+
+
 @media screen and (max-width: 800px) {
+	#itemlist li{
+		width: 46%; margin:0.92%; padding:0.92%;
+		}
+	}
+@media screen and (max-width: 500px) {
 	#itemlist li{
 		width: auto;
 		float:none;
+		margin:0; padding:10px;
+		margin-bottom:10px;
 		}
 	}
+#itemlist li .edit_popup_menu{
+	background: #9DC45F;
+	border: none;
+	padding: 5px 15px 5px 15px;
+	color: #585858;
+	text-shadow: 1px 1px 1px #FFE477;
+	font-weight: bold;
 	
+	position: absolute;
+	top:0;right:0;
+	transform:scaleX(0);
+	transition:transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+	transform-origin:right top;
+	opacity:0;
+	}	
+	
+#itemlist li h1:hover .edit_popup_menu{
+	opacity:1;
+	transform:scaleX(1);
+	transition:transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+	}
 #itemlist li h1,h2{
 	margin:0;
 	}
 #itemlist li h1{
-	font-size:24px;
+	color: #D3D3D3;
+	text-shadow: 1px 1px 1px #444;
+	font-size:20px;
+	padding: 10px 0px 10px 40px;
+    display: block;
+    border-bottom: 1px solid #444;
+	background-color: #4A4A4A;
+    margin: -10px -30px 30px -30px;
 	}
+	
+#itemlist li h1>span {
+    display: block;
+    font-size: 11px;
+}
 #itemlist li h2{
 	font-size:16px;
 	}

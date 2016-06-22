@@ -72,3 +72,11 @@
 	color: #4A4A4A;
 	font-size:20px;
 	}
+	
+#menu .logout li{
+	background-color: rgba(171,171,171,0.60);
+	}
+#menu .logout li:hover{
+	background-color: rgba(171,171,171,1.00);
+	}
+

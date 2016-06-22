@@ -100,7 +100,13 @@ function addTogleListeners(){
 		
 	$(".home").click(function(){
 			$("#menu_checkbox").prop("checked",false);
+			if($("#product_checkbox").prop("checked") == false){
+				//alert("ik refresh de data omdat je op home klikt");
+				$("#itemlist").empty()
+				getDataFromDb();
+				}
 			$("#product_checkbox").prop("checked",false);
+			
 		});
 };
 
@@ -207,8 +213,12 @@ function getDataFromDb(key,getdata){
 		cache: false,
 		success: function(data){
 			//alert(data);
-			
+		if(data == "[]"){
+			alert("erisgeendata");
+			checkLogin('logout');
+			}	
 		var result = JSON.parse(data);
+		
 		
 		$.each(result, function(i, field){
 			var reloaddata = true;

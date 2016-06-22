@@ -116,12 +116,13 @@ function showProduct(){
 	var name="<h1>"+window.editname+" ("+window.showid+")</h1>";
  	var type=window.edittype;
  	var state=window.editstate;
+	var owner=window.editowner;
 	var createdate=window.createdate;
 	var editdate=window.editdate;
 	var notes=window.notes;
 	
-	var info="<i>aangemaakt: "+createdate+"<br>opgeslagen: "+editdate+"</i>";
-	$("#product_info").append(name+info);
+	var info="<i>aangemaakt: "+createdate+"<br>opgeslagen: "+editdate+"<br>eigenaar: "+owner+"</i>";
+	$("#product_info").append(name+info+"<hr>"+state+notes);
 	
 	}
 function fillIn(){
@@ -213,7 +214,7 @@ function getDataFromDb(key,getdata){
 		cache: false,
 		success: function(data){
 			//alert(data);
-		if(data == "[]"){
+		if(data == ""){
 			alert("erisgeendata");
 			checkLogin('logout');
 			}	
@@ -236,10 +237,11 @@ function getDataFromDb(key,getdata){
 					window.editid=field.id;
 					window.edittype=field.type;
 					window.editname=field.name;
+					window.editstate=field.state;
 					window.editowner=field.owner;
 					window.createdate=field.date;
 					window.editdate=field.editdate;
-					window.notes=field.notes;
+					window.editnotes=field.notes;
 					
 					//alert(edittype+", "+editname+", "+editowner);
 					

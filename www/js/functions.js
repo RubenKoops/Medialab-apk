@@ -163,7 +163,12 @@ function login(){
 	$("#login").click(function(){
 		//alert("login");
 		var username=$("#username").val();
+		username = username.toLowerCase();
+		username = (username.trim());
+		
 		var password=$("#password").val();
+		password = (password.trim());
+		
 		var ready=false;
 		
 		 if($.trim(username).length>0 & $.trim(password).length>0){

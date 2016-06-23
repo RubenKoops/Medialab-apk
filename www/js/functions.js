@@ -28,6 +28,13 @@ $(document).ready(function(){
 		getDataFromDb();
 		addTogleListeners();
 		}
+	var username = window.localStorage.getItem("username");
+	var password = window.localStorage.getItem("password");
+	if(password){
+		$("#username").val(window.localStorage.getItem("username"));
+		$("#password").val(window.localStorage.getItem("password"));
+		}
+	
 		
 });
 
@@ -194,11 +201,13 @@ function login(){
 						//alert("inserted");
 						$("body").append("<msg>login gelukt</msg>");
 						window.localStorage.setItem('login', true);
+						window.localStorage.setItem('username', username);
+						window.localStorage.setItem('password', password);
 						checkLogin();
 						$("#login").val('login');
 						}
 						else{
-							//alert(data);
+							alert(data);
 							window.location.replace("login.html");
 							$("body").append("<msg>"+data+"</msg>");
 							$("#login").val('login');
@@ -224,6 +233,7 @@ function getDataFromDb(key,getdata){
 			alert("erisgeendata");
 			checkLogin('logout');
 			}	
+			
 		var result = JSON.parse(data);
 		
 		

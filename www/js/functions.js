@@ -120,7 +120,7 @@ function addTogleListeners(){
 function showProduct(){
 	
 	$("#product_info").empty()
-	var name="<h1>"+window.editname+" ("+window.showid+")</h1>";
+	var name="<h1 class='edit_popup_menu' id='"+showid+"'>"+window.editname+" ("+window.showid+")</h1>";
  	var type=window.edittype;
  	var state=window.editstate;
 	var owner=window.editowner;

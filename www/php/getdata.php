@@ -1,4 +1,18 @@
 <?php
+/*
+$id=strtoupper($_POST['id']);
+$type=$_POST['type'];
+$name=$_POST['name'];
+$date= date("Y-m-d H:i:s");
+$editdate= $date;
+$owner=$_POST['owner'];
+$action = $_POST['action'];
+*/
+//"SELECT * FROM `inventory` ORDER BY date DESC"
+//"INSERT INTO inventory (id,type,name,date,editdate,owner) VALUES ('$id','$type','$name','$date','$date','$owner')"
+//"UPDATE inventory SET type='$type', name='$name', editdate='$editdate', owner='$owner' WHERE id='$id'"
+//"DELETE FROM inventory WHERE id='$id'"
+//"SELECT id FROM `inventory`"
 
 include "includes.php";
 	

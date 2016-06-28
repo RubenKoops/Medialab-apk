@@ -9,7 +9,6 @@
 	position:fixed;
 	transform: translateX(0);
 	height:50px; width:50px;
-	padding-right:20px; padding-bottom:20px;
 	background-image:url(../img/menu.png);
 	background-size:70% 70%;
 	background-position: center center;

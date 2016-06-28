@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<meta charset="UTF-8">
+<title>Naamloos document</title>
+<script type="text/javascript">
+$(document).ready(function(){
+	selectFromDb('inventory','*','editdate','DESC');
+	});
+
+	
+function selectFromDb(table,cols,keycol,order){
+	var dataString="table="+table+"&cols="+cols+"&keycol="+keycol+"&order="+order+"&action=select";
+	alert(dataString);
+	
+	$.ajax({
+		type: "POST",
+		url:"http://pakhuis.hosts.ma-cloud.nl/medialab/php/getdata.php",
+		data: dataString,
+		xhrFields: { withCredentials: true },
+		crossDomain: true,
+		cache: false,
+		success: function(data){
+		alert(data);
+		
+		if(data == 'geen data'){
+			//alert("geen data");
+			}else{
+				var result = JSON.parse(data);	
+				$.each(result, function(i, field){
+					var type=field.type;
+					});
+				}
+		
+		}
+		});
+}
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

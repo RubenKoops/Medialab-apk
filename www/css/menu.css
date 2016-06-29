@@ -79,4 +79,33 @@
 #menu .logout li:hover{
 	background-color: rgba(171,171,171,1.00);
 	}
+/*----------------- types filter -----------------*/
+#types {
+	display:table;
+	margin:auto; padding:0;
+	}
+#types input[type='checkbox']{
+	display:none;
+	}
+#types label{
+	display:inline-block;
+	margin:4px; padding:10px;
+	font-size:14px;
+	background-color:rgba(0,0,0,0.45);
+	border-radius:5px;
+	opacity:0.2;
+	}
+	
+#types input[type='checkbox']:checked + label{
+	opacity:1;
+	}
+	
+#types input[type='button'] {
+	background-color:transparent;
+	padding:10px;
+	display: block;
+	border:none;
+	font-size:14px;
+	outline:none;
+	}
 

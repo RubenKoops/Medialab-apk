@@ -55,6 +55,6 @@
 		 else
 		  echo "Error message = ".mysql_error();
  	}
-	 }
+}
 
  ?>

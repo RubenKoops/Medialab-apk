@@ -20,14 +20,8 @@ displayCheckbox('className')
 removeElement('class1|class2')
 */
 $(document).ready(function(){
-	login();
-	checkLogin();
-	if(window.login){
-		deleteDataFromDb();
-		insertDataToDb();
-		getDataFromDb();
-		addTogleListeners();
-		}
+	addTogleListeners();
+	
 	var username = window.localStorage.getItem("username");
 	var password = window.localStorage.getItem("password");
 	if(password){
@@ -45,10 +39,20 @@ function removeSpaces(string) {
 	
 function addTogleListeners(){
 	
-	
-	$(".logout").click(function(){
-		//alert("logout");
-		checkLogin('logout');
+	$("#types").on("click","input",function(){
+		
+		if(this.id == "checkall"){
+			//alert("je moeder");
+			$("#types :checkbox").prop("checked",true);
+			$("#itemlist li").css('display','block');
+			}else{
+				//alert(this.id);
+				if($("."+this.id).css('display') != 'none'){
+					$("."+this.id).css('display','none');
+					}else{
+						$("."+this.id).css('display','block');
+						}
+				}
 		});
 		
 		
@@ -117,54 +121,7 @@ function addTogleListeners(){
 		});
 };
 
-function showProduct(){
-	
-	$("#product_info").empty()
-	var name="<h1 class='edit_popup_menu' id='"+window.showid+"'>"+window.editname+" ("+window.showid+")</h1>";
- 	var type=window.edittype;
- 	var state=window.editstate;
-	var owner=window.editowner;
-	var createdate=window.createdate;
-	var editdate=window.editdate;
-	var notes=window.notes;
-	
-	var info="<i>aangemaakt: "+createdate+"<br>opgeslagen: "+editdate+"<br>eigenaar: "+owner+"</i>";
-	$("#product_info").append(name+info+"<hr>"+state+notes);
-	
-	}
-function fillIn(){
-	$('#action').val("update");
-	$('#id').val(window.editid);
-	$('#type').val(window.edittype); 
-	$('#name').val(window.editname);
-	$('#owner').val(window.editowner); 
-	
-	$("#info").empty()
-	$("#info").append('<b>aangemaakt: </b>'+window.createdate+'<br><b>opgeslagen: </b>'+window.editdate);
-	}
-	
-function checkLogin(logout){
-	
-	if(logout){
-		window.localStorage.removeItem('login');
-		}
-	// To retrieve a value
-	login = window.localStorage.getItem('login');
-	//alert(login);
-	var pagename = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
-	
-	if(login != 'true'){
-		if(pagename != 'login.html'){
-			window.location.replace("login.html");
 
-			}
-		}else if(login == 'true'){
-			if(pagename == 'login.html'){
-				window.location.replace("index.html");
-
-				}
-			}
-	}
 	
 function login(){
 	$("#login").click(function(){
@@ -220,115 +177,6 @@ function login(){
 		});
 		};
 
-function getDataFromDb(key,getdata){
-	
-	$.ajax({
-		url:"http://pakhuis.hosts.ma-cloud.nl/medialab/php/json.php",
-		xhrFields: { withCredentials: true },
-		crossDomain: true,
-		cache: false,
-		success: function(data){
-			//alert(data);
-		if(data == ""){
-			alert("erisgeendata");
-			checkLogin('logout');
-			}	
-			
-		var result = JSON.parse(data);
-		
-		
-		$.each(result, function(i, field){
-			var reloaddata = true;
-			if(key){reloaddata = false;}
-			if(getdata){reloaddata = true;}
-			var id=field.id;
-			var bekijkbutton = "<input id='"+id+"' type='button' class='show_product button' value='bekijk'>";
-			var editbutton = "<input id='"+id+"' type='button' class='edit_popup_menu' value='edit'>";
- 			var name="<h1>"+field.name+" ("+id+")";
- 			var type="<span>"+field.type;
- 			var state=field.state+"</span>"+editbutton+"</h1>";
-			
-			if(key){
-				if(id == key){
-					window.editid=field.id;
-					window.edittype=field.type;
-					window.editname=field.name;
-					window.editstate=field.state;
-					window.editowner=field.owner;
-					window.createdate=field.date;
-					window.editdate=field.editdate;
-					window.editnotes=field.notes;
-					
-					//alert(edittype+", "+editname+", "+editowner);
-					
-					fillIn();
-					showProduct();
-					}
-				}
-				if(reloaddata == true){
-					//alert('ik reload nu');
-					
-					$("#itemlist").append("<li>"+name+type+state+bekijkbutton+"</li>");
-					}
-				
- 			});
-		}
- 		});
-}
-
-function insertDataToDb(){ 
- $("#insert").click(function(){
-	//alert("insert");
-	
-var action=$("#action").val();
-var id=$("#id").val();
-var type=$("#type").val();
-var name=$("#name").val();
-var owner=$("#owner").val();
-var note=$("#note").val();
-var action=$("#action").val();
-var ready=false;
-
- if($.trim(id).length>0 & $.trim(type).length>0 & $.trim(name).length>0 & $.trim(owner).length>0){
-	 ready=true;
- 	}else{
-		$("body").append("<msg>vul alle velden in</msg>");
-		}
- var dataString="id="+id+"&type="+type+"&name="+name+"&owner="+owner+"&note="+note+"&action="+action;
- if(ready == true){
-	 $.ajax({
-		type: "POST",
-		url:"http://pakhuis.hosts.ma-cloud.nl/medialab/php/insert.php",
-		data: dataString,
-		xhrFields: {
-			   withCredentials: true
-			},
-		crossDomain: true,
-		cache: false,
-		beforeSend: function(){ $("#insert").val('Connecting...');},
-		success: function(data){
-			
-			if(data=="ok"){
-				//alert("inserted");
-				$("#itemlist").empty();
-				$("body").append("<msg>product opgeslagen</msg>");
-				//$("#id,#type,#name,#owner,#note").val("");
-				getDataFromDb(id,'getdata');
-				$("#insert").val('opslaan');
-				}
-				else{
-					//alert(data);
-					$("body").append("<msg>"+data+"</msg>");
-					$("#insert").val('opslaan');
-					}
-				}
-			});
-		}return false;
-		
-	
-});
-	
- }
 
 function confirmDelete(){
 	if($("#confirm_delete").css("max-height") == "100px"){
@@ -337,38 +185,6 @@ function confirmDelete(){
 			$('#confirm_delete').css("max-height","100px");
 			}
 	}
-function deleteDataFromDb(){
-	 $("#delete").click(function(){
-		 //alert("probeer "+window.editid+" te verwijderen");
-		 var id = window.editid;
-		 var dataString="id="+id+"&action=delete";
-		 $.ajax({
-			type: "POST",
-			url:"http://pakhuis.hosts.ma-cloud.nl/medialab/php/insert.php",
-			data: dataString,
-			xhrFields: {
-				   withCredentials: true
-				},
-			crossDomain: true,
-			cache: false,
-			beforeSend: function(){ $("#insert").val('Connecting...');},
-			success: function(data){
-				if(data=="ok"){$("body").append("<msg>product "+id+" verwijderd</msg>");
-					//$("#id,#type,#name,#owner,#note").val("");
-					$("#popup_checkbox").prop("checked",false);
-					$("#itemlist").empty()
-					getDataFromDb('','getdata');
-					$("#insert").val('opslaan');
-					}
-					else{
-					//alert(data);
-					$("body").append("<msg>"+data+"</msg>");
-					$("#insert").val('opslaan');
-					}
-				}
-			});
-		 });
-	} 
   
 
 			

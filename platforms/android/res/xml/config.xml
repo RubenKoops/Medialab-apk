@@ -6,12 +6,12 @@
         <param name="onload" value="true" />
     </feature>
     <allow-intent href="market:*" />
-    <name>HelloCordova</name>
+    <name>Medialab</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Inventaris app van het medialab
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="r.koops@ma-web.nl" href="http://pakhuis.hosts.ma-cloud.nl">
+        Ruben Koops
     </author>
     <content src="index.html" />
     <access origin="*" />

@@ -53,6 +53,7 @@ if($action == 'select'){
 		$data[]=$row;
 		//$id = $row->id;
 		}
+	
 	echo json_encode($data);
 	}
 //////////////////////////////////////////////////////////

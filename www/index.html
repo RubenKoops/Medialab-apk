@@ -6,6 +6,7 @@
 <link href="css/style.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/functions.js"></script>
+<script type="text/javascript" src="js/db.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,6 +24,10 @@
         <a href="javascript:void(0)" class="home"><li>home</li></a>
         <a href="javascript:void(0)" class="toggle_popup_menu"><li>add item</li></a>
         
+        <ul id="types"><input id="checkall" type="button" value="all"></ul>
+        <ul id="state">
+        	<li>beschikbaar</li>
+        </ul>
         <br>
         <a href="http://pakhuis.hosts.ma-cloud.nl/medialab/php/" target="_blank" onclick="navigator.app.loadUrl('http://pakhuis.hosts.ma-cloud.nl/medialab/php/', { openExternal:true });"><li>check update</li></a>
         <a href="javascript:void(0)" class="logout"><li>logout</li></a>

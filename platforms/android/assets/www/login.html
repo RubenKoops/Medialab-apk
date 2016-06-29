@@ -19,7 +19,7 @@
     </h1>
     <label>
     	<span>Gebruiker:</span>
-        <input id="username" type="text" name="username" placeholder="gebruikersnaam" required style="text-transform: lowercase;">
+        <input id="username" type="text" name="username" placeholder="gebruikersnaam" required style="text-transform: lowercase;" onblur="this.value=removeSpaces(this.value);">
     </label>
     <label>
         <span>Wachtwoord:</span>

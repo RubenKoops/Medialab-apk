@@ -2,10 +2,14 @@
 
 $(document).ready(function(){
 	selectFromDb('inventory','*','editdate','DESC');
-	
-	
+	formListener();
 });
-
+function formListener(){
+	$("#opslaan").click(function(){
+		insertToDb('inventory');
+		});
+	}
+	
 function selectFromDb(table,cols,keycol,order){
 	var type_array = new Array();
 	var owner_array = new Array();
@@ -58,11 +62,11 @@ function insertToDb(table){
 	var owner = $("#owner").val();
 	var note = $("#note").val();
 	
-	var date = new Date();				var month = (date.getMonth()+1)+"";		var day = date.getDay()+"";
+	var date = new Date();				var month = (date.getMonth()+1)+"";		var day = date+"";
 	var hours = date.getHours()+"";		var minutes = date.getMinutes()+"";		var seconds = date.getSeconds()+"";
 	
 	if(month.length< 2){month = "0"+month;}										if(hours.length< 2){hours = "0"+hours;}										
-	if(day.length< 2){dat = "0"+day;}												if(minutes.length< 2){minutes = "0"+minutes;}
+	if(day.length< 2){day = "0"+day;}												if(minutes.length< 2){minutes = "0"+minutes;}
 																				if(seconds.length< 2){seconds = "0"+seconds;}									
 	
 	var date = date.getFullYear() + "-" + month + "-" + day +" "+ hours +":"+ minutes +":"+ seconds;
@@ -115,7 +119,7 @@ function generateTypes(type_array){
 }
 function generateNames(name_array){
 	name_array = jQuery.unique(name_array);
-	$("#owner_list").empty();
+	$("#name_list").empty();
 	
 	$.each( name_array, function( key, value ) {
 		//alert( key + ": " + value );

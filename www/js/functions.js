@@ -21,7 +21,6 @@ removeElement('class1|class2')
 */
 $(document).ready(function(){
 	addTogleListeners();
-	formListener();
 	
 	var username = window.localStorage.getItem("username");
 	var password = window.localStorage.getItem("password");
@@ -37,11 +36,7 @@ function removeSpaces(string) {
  return string.split(' ').join('');
 }	 
 
-function formListener(){
-	$("#opslaan").click(function(){
-		insertToDb('inventory');
-		});
-	}
+
 	
 function addTogleListeners(){
 	

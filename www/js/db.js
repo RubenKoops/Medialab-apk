@@ -51,6 +51,7 @@ function selectFromDb(table,cols,keycol,order){
 					generateTypes(type_array);
 					generateOwners(owner_array);
 					generateNames(name_array);
+					$("#checkall").trigger("click");
 					}
 		});
 }

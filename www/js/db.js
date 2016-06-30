@@ -62,7 +62,7 @@ function insertToDb(table){
 	var owner = $("#owner").val();
 	var note = $("#note").val();
 	
-	var date = new Date();				var month = (date.getMonth()+1)+"";		var day = date+"";
+	var date = new Date();				var month = (date.getMonth()+1)+"";		var day = date.getDate()+"";
 	var hours = date.getHours()+"";		var minutes = date.getMinutes()+"";		var seconds = date.getSeconds()+"";
 	
 	if(month.length< 2){month = "0"+month;}										if(hours.length< 2){hours = "0"+hours;}										

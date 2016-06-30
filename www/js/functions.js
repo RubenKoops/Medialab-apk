@@ -21,6 +21,7 @@ removeElement('class1|class2')
 */
 $(document).ready(function(){
 	addTogleListeners();
+	formListener();
 	
 	var username = window.localStorage.getItem("username");
 	var password = window.localStorage.getItem("password");
@@ -36,6 +37,11 @@ function removeSpaces(string) {
  return string.split(' ').join('');
 }	 
 
+function formListener(){
+	$("#opslaan").click(function(){
+		insertToDb('inventory');
+		});
+	}
 	
 function addTogleListeners(){
 	
@@ -114,7 +120,7 @@ function addTogleListeners(){
 			if($("#product_checkbox").prop("checked") == false){
 				//alert("ik refresh de data omdat je op home klikt");
 				$("#itemlist").empty()
-				getDataFromDb();
+				selectFromDb('inventory','*','editdate','DESC');
 				}
 			$("#product_checkbox").prop("checked",false);
 			

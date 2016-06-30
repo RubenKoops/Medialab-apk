@@ -65,23 +65,17 @@
     <label>
         <span>Type :</span>
         <input id="type" type="text" name="type" placeholder="type product" required list="type_list">
-        <datalist id="type_list">
-        	<option value="smartphone"></option>
-            <option value="tablet"></option>
-            <option value="camera"></option>
-            <option value="audio"></option>
-            <option value="monitor"></option>
-            <option value="computer"></option>
-            <option value="laptop"></option>
-        </datalist>
+        <datalist id="type_list"></datalist>
     </label>
     <label>
         <span>Product :</span>
-        <input id="name" type="text" name="name" placeholder="Naam van het product" required>
+        <input id="name" type="text" name="name" placeholder="Naam van het product" required list="name_list">
+        <datalist id="name_list"></datalist>
     </label>
     <label>
         <span>Jouw naam :</span>
-        <input id="owner" type="text" name="owner" placeholder="Naam van invoerder" required>
+        <input id="owner" type="text" name="owner" placeholder="Naam van invoerder" required list="owner_list">
+        <datalist id="owner_list"></datalist>
     </label>
     <label class="edit">
         <span>Notitie :</span>
